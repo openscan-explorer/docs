@@ -34,7 +34,7 @@ export default function ExplorerFunctionalitiesPage() {
         
       </p>
       <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
-        <Link href="/explorer/power-user" className="group !no-underline hover:!no-underline">
+        <Link href="/explorer/super-user" className="group !no-underline hover:!no-underline">
           <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
             <div className="mb-3 text-accent">
               <Globe className="h-5 w-5" />
