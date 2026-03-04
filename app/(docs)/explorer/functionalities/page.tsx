@@ -2,27 +2,17 @@ import type { Metadata } from "next"
 import { PageHeader, InfoCard } from "@/components/docs-components"
 import {
   Globe,
-  Search,
-  Link2,
-  Fuel,
   Blocks,
   ArrowRightLeft,
   FileCode2,
-  Eye,
   Wallet,
   Image,
   Bitcoin,
   Settings,
-  TestTube,
-  Wrench,
-  Users,
-  Monitor,
-  Languages,
-  Database,
-  Server,
-  ShieldCheck,
   Network,
+  ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Explorer Functionalities",
@@ -39,55 +29,53 @@ export default function ExplorerFunctionalitiesPage() {
       />
 
       {/* ── Global App ─────────────────────────────────── */}
-      <h2 id="global-app">Global App</h2>
+      <h2 id="global-app">Sections</h2>
       <p>
-        The Explorer ships as a multi-network application with a unified
-        interface. The home screen presents network cards for every supported
-        chain, and a <strong>Show testnets</strong> toggle lets you reveal or
-        hide test networks.
+        
       </p>
       <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
-        <InfoCard
-          title="Theme & Display"
-          description="Dark and light mode support with a global theme toggle. Background blocks animation can be enabled or disabled."
-          icon={<Monitor className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Network Status"
-          description="A real-time status chip in the navbar shows the latest block number and a quick-link to gas metrics (EVM chains)."
-          icon={<Globe className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Responsive Layout"
-          description="Fully responsive UI with dedicated desktop and mobile menu variants. Mobile menu includes all navigation and settings access."
-          icon={<Monitor className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Super-User Mode"
-          description="A toggle that unlocks advanced controls such as persistent cache management, size inspection, and manual cache clearing."
-          icon={<ShieldCheck className="h-5 w-5" />}
-        />
+        <Link href="/explorer/power-user" className="group !no-underline hover:!no-underline">
+          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
+            <div className="mb-3 text-accent">
+              <Globe className="h-5 w-5" />
+            </div>
+            <h3 className="font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+              Super User Mode
+              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Super user mode unlocks advanced controls. Raw information, dev Tools and technical analysis capabilities.
+            </p>
+          </div>
+        </Link>
+        <Link href="/explorer/settings" className="group !no-underline hover:!no-underline">
+          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
+            <div className="mb-3 text-accent">
+              <Settings className="h-5 w-5" />
+            </div>
+            <h3 className="font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
+              Settings
+              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            </h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Comprehensive configuration options for appearance, language, cache management, RPC strategy, API keys, and per-network RPC editing.
+            </p>
+          </div>
+        </Link>
       </div>
-      <p>
-        The header and footer provide navigation to About, Subscriptions,
-        Contact, Supporters, GitHub, X, bug reporting, and version/commit
-        information. Browser metadata and OpenSearch integration are included,
-        along with MetaMask explorer URL redirect handling.
-      </p>
 
       {/* ── Search ─────────────────────────────────────── */}
       <h2 id="search">Search</h2>
       <p>
-        A context-aware search box appears on every network page and
-        automatically detects the type of query you enter:
+        A context-aware search box that automatically detects the type of query you enter:
       </p>
       <ul>
         <li>
-          <strong>EVM / BTC transaction hashes</strong> — Detected and routed
+          <strong>Transaction hashes</strong> — Detected and routed
           directly to the transaction detail page.
         </li>
         <li>
-          <strong>EVM / BTC addresses</strong> — Identified by format and routed
+          <strong>Addresses</strong> — Identified by format and routed
           to the correct address page.
         </li>
         <li>
@@ -99,18 +87,13 @@ export default function ExplorerFunctionalitiesPage() {
           routed to the address page.
         </li>
       </ul>
-      <p>
-        A dedicated search results page (<code>{'#/search?q=...'}</code>)
-        provides query type detection with per-network result links. Invalid
-        queries surface user-facing error messages.
-      </p>
 
       {/* ── Supported Chains ───────────────────────────── */}
       <h2 id="supported-chains">Supported Chains</h2>
       <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
         <InfoCard
           title="EVM Chains"
-          description="Ethereum, Base, Arbitrum, Optimism, BNB Chain, Polygon, plus testnets and localhost support through configuration."
+          description="Ethereum, Base, Arbitrum, Optimism, BNB Chain, Polygon."
           icon={<Network className="h-5 w-5" />}
         />
         <InfoCard
@@ -130,7 +113,7 @@ export default function ExplorerFunctionalitiesPage() {
       <h3 id="evm-dashboard">Network Dashboard</h3>
       <p>
         An at-a-glance overview showing current price, gas tier breakdown
-        (low / average / high), the latest block, and the most recent
+        (low / average / high), latest blocks, and the most recent
         transactions.
       </p>
 
@@ -138,32 +121,23 @@ export default function ExplorerFunctionalitiesPage() {
       <p>
         A dedicated gas page displaying low, average, and high gas prices, the
         current base fee, and estimated transaction costs broken down by common
-        action types (transfer, swap, deploy, etc.).
+        action types.
       </p>
 
-      <h3 id="blocks">Blocks</h3>
-      <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
+      <h3 id="blocks">Blocks and Transactions</h3>
+      <div className="not-prose grid gap-4 sm:grid-cols-3 mb-8">
         <InfoCard
-          title="Block List"
-          description="Paginated block list with latest / newer / older navigation, validator links, and provider selection indicator."
+          title="Block and transactions list"
+          description="Paginated lists with latest / newer / older navigation, validator links, etc."
           icon={<Blocks className="h-5 w-5" />}
         />
         <InfoCard
-          title="Block Detail"
+          title="Block Details"
           description="Core fields, gas usage %, base fee, burnt fee, extra data, withdrawals, transaction list, previous/next block navigation, and extended technical fields."
           icon={<Blocks className="h-5 w-5" />}
         />
-      </div>
-
-      <h3 id="transactions">Transactions</h3>
-      <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
         <InfoCard
-          title="Transaction List"
-          description="Block-scoped pagination with drill-down links to individual transactions and addresses."
-          icon={<ArrowRightLeft className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Transaction Detail"
+          title="Transaction Details"
           description="Status, confirmations, fee math, gas metrics, nonce, type, and human-readable timestamps."
           icon={<ArrowRightLeft className="h-5 w-5" />}
         />
@@ -175,16 +149,7 @@ export default function ExplorerFunctionalitiesPage() {
           decoded event logs (ABI and generic), raw topics and data.
         </li>
         <li>
-          <strong>L2 extras</strong> — Arbitrum-specific and
-          Optimism-specific fields are displayed when applicable.
-        </li>
-        <li>
-          <strong>Debug trace / call trace</strong> — A dedicated trace panel is
-          available when a trace-capable backend is connected.
-        </li>
-        <li>
-          <strong>Mempool</strong> — A mempool route exists for pending
-          transaction visibility.
+          <strong>L2 extras</strong> — Specific fields are displayed when applicable.
         </li>
       </ul>
 
@@ -201,17 +166,16 @@ export default function ExplorerFunctionalitiesPage() {
         including avatar, contenthash, and text records.
       </p>
 
-      <h3 id="account-view">Account View</h3>
+      <h3 id="account-view">Account and Contracts View</h3>
       <ul>
-        <li>Balance and info cards with transaction history search, caching, and load-more pagination.</li>
-        <li>Token holdings panel showing supporter tokens, popular-token fetch, and custom token lookup.</li>
+        <li>Balance, transaction history, caching.</li>
+        <li>Token holdings panel showing popular tokens.</li>
       </ul>
 
-      <h3 id="contract-view">Contract View</h3>
       <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
         <InfoCard
           title="Verification & Source"
-          description="Verification state (Sourcify / local artifact), bytecode display, source code viewer, and ABI display."
+          description="Verification state (Sourcify), bytecode display, source code viewer, and ABI display."
           icon={<FileCode2 className="h-5 w-5" />}
         />
         <InfoCard
@@ -227,7 +191,7 @@ export default function ExplorerFunctionalitiesPage() {
       </p>
 
       {/* ── NFT Token Details ──────────────────────────── */}
-      <h2 id="nft-token-details">NFT Token Details</h2>
+      <h3 id="nft-token-details">NFT Token Details</h3>
       <p>
         Individual token pages are available at{" "}
         <code>{'#/network/address/:contract/:tokenId'}</code>. The Explorer
@@ -277,139 +241,6 @@ export default function ExplorerFunctionalitiesPage() {
           individual mempool transactions.
         </li>
       </ul>
-
-      {/* ── Settings & RPC Management ──────────────────── */}
-      <h2 id="settings">Settings & RPC Management</h2>
-      <div className="not-prose grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-        <InfoCard
-          title="Appearance"
-          description="Toggle background blocks animation and switch between dark and light themes."
-          icon={<Monitor className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Language"
-          description="Select from English, Spanish, Chinese, Japanese, and Portuguese (BR)."
-          icon={<Languages className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Cache Management"
-          description="Clear individual caches or all site data. Super-user mode adds persistent cache size inspection."
-          icon={<Database className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="RPC Strategy"
-          description="Choose between fallback, parallel, and race strategies. Configure parallel request limits."
-          icon={<Server className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="API Keys"
-          description="Manage Infura, Alchemy, and AI provider API keys in one place."
-          icon={<Settings className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Per-Network RPC Editor"
-          description="Add, remove, reorder, copy, sync, and re-rank endpoints. Tags for opensource, private, and tracking classification."
-          icon={<Link2 className="h-5 w-5" />}
-        />
-      </div>
-      <p>
-        MetaMask integration allows setting the Explorer as the default block
-        explorer for any supported EVM chain directly from the settings page.
-      </p>
-
-      {/* ── RPC Testing ────────────────────────────────── */}
-      <h2 id="rpc-testing">RPC Testing</h2>
-      <p>
-        A per-network endpoint testing page allows you to verify the health and
-        performance of your RPC connections:
-      </p>
-      <ul>
-        <li>Dropdown selection for network endpoints.</li>
-        <li>
-          <strong>Test all</strong> and <strong>retest single</strong> endpoint
-          actions.
-        </li>
-        <li>Sort by provider, latency, or status.</li>
-        <li>
-          Displays health status, latency, latest block, tracking
-          classification, and active state for each endpoint.
-        </li>
-      </ul>
-
-      {/* ── DevTools ───────────────────────────────────── */}
-      <h2 id="devtools">DevTools</h2>
-      <p>
-        A suite of built-in developer tools accessible from the Explorer
-        interface:
-      </p>
-
-      <h3 id="devtools-transactions">Transactions</h3>
-      <p>
-        Transaction builder with gas and fee estimation, revert simulation,
-        nonce fetch, send transaction, and raw RLP broadcast.
-      </p>
-
-      <h3 id="devtools-signatures">Signatures</h3>
-      <p>
-        Message signer, signature inspector (including compact signatures), and
-        EIP-712 typed-data encoder/decoder.
-      </p>
-
-      <h3 id="devtools-utils">Utilities</h3>
-      <div className="not-prose grid gap-4 sm:grid-cols-3 mb-8">
-        <InfoCard
-          title="ETH Unit Converter"
-          description="Convert between wei, gwei, and ETH with instant bidirectional input."
-          icon={<Wrench className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Keccak Hasher"
-          description="Hash arbitrary input with keccak256 and copy the result."
-          icon={<Wrench className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Hex Encoder / Decoder"
-          description="Encode text to hex or decode hex back to human-readable strings."
-          icon={<Wrench className="h-5 w-5" />}
-        />
-      </div>
-
-      <h3 id="devtools-contracts">Contracts</h3>
-      <p>
-        Sourcify standard and metadata verification, Etherscan import,
-        similarity verification, and storage slot reader.
-      </p>
-
-      <h3 id="devtools-development">Development</h3>
-      <p>
-        Hardhat Ignition artifact ZIP upload and parsing, plus local artifact
-        flow for development-time contract verification.
-      </p>
-
-      {/* ── Community & Metadata ───────────────────────── */}
-      <h2 id="community">Community & Metadata</h2>
-      <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
-        <InfoCard
-          title="About"
-          description="Project principles, feature highlights, supported networks, and version statistics."
-          icon={<Users className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Contact"
-          description="Reach out via XMTP or through social and issue channels."
-          icon={<Users className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Subscriptions"
-          description="Tiered pricing plans, early-adopter schedule, and DAO payment address with submission flow."
-          icon={<Wallet className="h-5 w-5" />}
-        />
-        <InfoCard
-          title="Supporters & Profiles"
-          description="Tier-grouped supporter listing with links, plus profile pages for app, network, and organization metadata."
-          icon={<Users className="h-5 w-5" />}
-        />
-      </div>
     </div>
   )
 }
