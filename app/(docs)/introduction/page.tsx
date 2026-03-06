@@ -1,14 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { PageHeader, InfoCard } from "@/components/docs-components"
+import { PageHeader, InfoCard, LinkCard } from "@/components/docs-components"
 import {
-  ArrowRight,
   Compass,
   Code,
   ExternalLink,
   HandCoins,
   Lock,
-  Sparkles,
   Unplug,
   Users,
   Telescope,
@@ -23,7 +21,7 @@ export const metadata: Metadata = {
     "OpenScan is the open-source, trustless, and privacy-respecting blockchain explorer — free for everyone.",
 }
 
-export default function WelcomePage() {
+export default function IntroductionPage() {
   return (
     <div className="prose">
       {/* 1. Hero */}
@@ -79,72 +77,39 @@ export default function WelcomePage() {
       </p>
 
       <div className="not-prose grid gap-4 sm:grid-cols-3 mb-8">
-        <Link href="/explorer" className="group !no-underline hover:!no-underline">
-          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
-            <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
-              <Compass className="h-5 w-5 shrink-0 text-accent" />
-              Use
-              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Browse transactions, blocks, contracts, and tokens across multiple
-              networks — directly from your browser.
-            </p>
-          </div>
-        </Link>
-        <Link href="/hardhat-plugin" className="group !no-underline hover:!no-underline">
-          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
-            <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
-              <SquareChevronRight className="h-5 w-5 shrink-0 text-accent" />
-              Buidl
-              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Use the Hardhat Plugin to integrate OpenScan into your development workflow.
-            </p>
-          </div>
-        </Link>
-        <Link href="/super-user" className="group !no-underline hover:!no-underline">
-          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
-            <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
-              <Telescope className="h-5 w-5 shrink-0 text-accent" />
-              Super user
-              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Deep exploration and deeper insights. Learn how to leverage OpenScan's advanced features and become a power user of the ecosystem.
-            </p>
-          </div>
-        </Link>
+        <LinkCard
+          href="/explorer"
+          title="Use"
+          description="Browse transactions, blocks, contracts, and tokens across multiple networks — directly from your browser."
+          icon={<Compass className="h-5 w-5 shrink-0 text-accent" />}
+        />
+        <LinkCard
+          href="/hardhat-plugin"
+          title="Buidl"
+          description="Use the Hardhat Plugin to integrate OpenScan into your development workflow."
+          icon={<SquareChevronRight className="h-5 w-5 shrink-0 text-accent" />}
+        />
+        <LinkCard
+          href="/super-user"
+          title="Super user"
+          description="Deep exploration and deeper insights. Learn how to leverage OpenScan's advanced features and become a power user of the ecosystem."
+          icon={<Telescope className="h-5 w-5 shrink-0 text-accent" />}
+        />
       </div>
 
       <div className="not-prose grid gap-4 sm:grid-cols-2 mb-8">
-        <Link href="/skills" className="group !no-underline hover:!no-underline">
-          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
-            <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
-              <ToyBrick className="h-5 w-5 shrink-0 text-accent" />
-              Integrate
-              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Use Skills, Tools, Network Connectors, and the Hardhat Plugin to
-              build on the OpenScan stack.
-            </p>
-          </div>
-        </Link>
-        <Link href="/metadata" className="group !no-underline hover:!no-underline">
-          <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
-            <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
-              <HandCoins className="h-5 w-5 shrink-0 text-accent" />
-              Support
-              <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
-            </h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Subscribe as a Backer, Partner, or Ally. Get verified listings,
-              branding, and help sustain open infrastructure.
-            </p>
-          </div>
-        </Link>
+        <LinkCard
+          href="/skills"
+          title="Integrate"
+          description="Use Skills, Tools, Network Connectors, and the Hardhat Plugin to build on the OpenScan stack."
+          icon={<ToyBrick className="h-5 w-5 shrink-0 text-accent" />}
+        />
+        <LinkCard
+          href="/metadata"
+          title="Support"
+          description="Subscribe as a Backer, Partner, or Ally. Get verified listings, branding, and help sustain open infrastructure."
+          icon={<HandCoins className="h-5 w-5 shrink-0 text-accent" />}
+        />
       </div>
       {/* 4. How It Works / Core Concepts */}
       <h2 id="how-it-works">How It Works</h2>

@@ -1,3 +1,5 @@
+import Link from "next/link"
+import { ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface PageHeaderProps {
@@ -24,34 +26,6 @@ export function PageHeader({ title, description, badge }: PageHeaderProps) {
   )
 }
 
-interface OnThisPageProps {
-  items: { title: string; href: string }[]
-}
-
-export function OnThisPage({ items }: OnThisPageProps) {
-  return (
-    <div className="hidden xl:block xl:w-56 xl:shrink-0">
-      <div className="sticky top-12">
-        <h4 className="text-sm font-semibold text-foreground mb-3">
-          On this page
-        </h4>
-        <ul className="flex flex-col gap-2">
-          {items.map((item) => (
-            <li key={item.href}>
-              <a
-                href={item.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )
-}
-
 interface InfoCardProps {
   title: string
   description: string
@@ -73,6 +47,28 @@ export function InfoCard({ title, description, icon, className }: InfoCardProps)
       </div>
       <p className="!m-0 text-sm leading-relaxed text-muted-foreground">{description}</p>
     </div>
+  )
+}
+
+interface LinkCardProps {
+  href: string
+  title: string
+  description: string
+  icon: React.ReactNode
+}
+
+export function LinkCard({ href, title, description, icon }: LinkCardProps) {
+  return (
+    <Link href={href} className="group !no-underline hover:!no-underline">
+      <div className="rounded-xl border border-border bg-card p-5 transition-colors hover:border-accent/40 h-full">
+        <h3 className="!mt-0 font-semibold text-foreground mb-1.5 flex items-center gap-2">
+          {icon}
+          {title}
+          <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+        </h3>
+        <p className="text-sm leading-relaxed text-muted-foreground">{description}</p>
+      </div>
+    </Link>
   )
 }
 
