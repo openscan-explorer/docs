@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
 export const metadata: Metadata = {
   title: {
     default: 'Docs — OpenScan',
@@ -9,13 +11,13 @@ export const metadata: Metadata = {
   description: 'Official documentation for OpenScan. Learn how it works, self-host, compare features, and understand our privacy policy.',
   icons: {
     icon: [
-      { url: '/icon.svg', type: 'image/svg+xml' },
-      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      { url: `${basePath}/icon.svg`, type: 'image/svg+xml' },
+      { url: `${basePath}/icon.png`, sizes: '512x512', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: `${basePath}/apple-icon.png`, sizes: '180x180', type: 'image/png' },
     ],
-    shortcut: '/icon.svg',
+    shortcut: `${basePath}/icon.svg`,
   },
 }
 

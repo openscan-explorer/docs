@@ -176,7 +176,7 @@ export function DocsSidebar() {
       <div className="sticky top-0 flex h-full max-h-screen flex-col overflow-y-auto px-4 pb-8">
         <div className="flex h-14 items-center border-b border-border px-2">
           <Link href="/introduction" className="flex items-center gap-2">
-            <img src="/openscan-logo.svg" alt="OpenScan" className="h-5 w-5" />
+            <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/openscan-logo.svg`} alt="OpenScan" className="h-5 w-5" />
             <span className="font-semibold text-foreground tracking-tight">
               OpenScan Docs
             </span>
@@ -195,7 +195,7 @@ export function MobileNav() {
     <div className="lg:hidden">
       <div className="flex h-14 items-center justify-between border-b border-border px-4">
         <Link href="/introduction" className="flex items-center gap-2">
-          <img src="/openscan-logo.svg" alt="OpenScan" className="h-5 w-5" />
+          <img src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/openscan-logo.svg`} alt="OpenScan" className="h-5 w-5" />
           <span className="font-semibold text-foreground tracking-tight">
             OpenScan Docs
           </span>
