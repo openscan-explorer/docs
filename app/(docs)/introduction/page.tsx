@@ -90,7 +90,7 @@ export default function IntroductionPage() {
           icon={<SquareChevronRight className="h-5 w-5 shrink-0 text-accent" />}
         />
         <LinkCard
-          href="/super-user"
+          href="/explorer/super-user"
           title="Super user"
           description="Deep exploration and deeper insights. Learn how to leverage OpenScan's advanced features and become a power user of the ecosystem."
           icon={<Telescope className="h-5 w-5 shrink-0 text-accent" />}
